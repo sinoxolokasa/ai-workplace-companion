@@ -1,15 +1,160 @@
-import { Link } from '@tanstack/react-router';
-import { ArrowRight, ArrowUpRight, Mail, ScanText, MessageSquare, ShieldCheck, Zap, Check, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { WorkplaceShell, tools } from './shell';
-import workspace from '@/assets/workspace.jpg';
+import { Link } from "@tanstack/react-router";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Mail,
+  ScanText,
+  MessageSquare,
+  ShieldCheck,
+  Zap,
+  Check,
+  Plus,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { WorkplaceShell, tools } from "./shell";
+import workspace from "@/assets/workspace.jpg";
 
 export function Dashboard() {
- return <WorkplaceShell title="Dashboard">
-   <div className="mb-7 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4"><div className="min-w-0"><div className="small-label mb-3 text-primary">A clearer day starts here</div><h1 className="text-2xl font-semibold sm:text-[30px]">Welcome to your workspace<span className="text-primary">.</span></h1><p className="mt-2 text-muted-foreground">Less busywork. More room for your best work.</p></div><div className="hidden items-center gap-2 text-xs text-muted-foreground lg:flex"><span className="status-dot"/>Ready when you are</div></div>
-   <section className="workspace-banner"><img src={workspace} alt="Glass-blue envelope and chat bubble with a silver document" width={1536} height={768}/><div className="workspace-banner-content"><span className="inline-flex items-center gap-2 text-xs font-medium text-primary"><Zap size={14}/>A smarter way to work</span><h2 className="mt-4 text-[29px] font-semibold leading-[1.25] sm:text-[34px]">AI Workplace<br/>Productivity Assistant</h2><p className="mt-3 max-w-80 text-sm leading-6 text-muted-foreground">Find the right words. Get to the key insights.<br className="hidden sm:block"/> Move your next idea forward.</p><Button asChild className="mt-5"><Link to="/email-generator">Let's get to work<ArrowRight/></Link></Button></div></section>
-   <section className="mt-9"><div className="mb-5 flex items-center justify-between"><h2 className="text-lg font-semibold">Your everyday toolkit</h2><span className="text-xs text-muted-foreground">Three tools. One focused workspace.</span></div><div className="grid gap-4 xl:grid-cols-3">{tools.map(t => <article className="tool-card flex flex-col" key={t.path}><div className="flex items-center justify-between"><div className={`flex size-11 items-center justify-center rounded-lg ${t.color}`}><t.icon size={22}/></div><ArrowUpRight size={17} className="text-muted-foreground"/></div><div className="small-label mt-6 text-[9px]">{t.tag}</div><h3 className="mt-2 text-lg font-semibold">{t.name}</h3><p className="mt-3 min-h-16 text-[13px] leading-6 text-muted-foreground">{t.description}</p><div className="mt-5 border-t border-border pt-4"><Button asChild variant="ghost" className="h-auto w-full justify-between p-0 text-sm"><Link to={t.path}>{t.action}<ArrowRight/></Link></Button></div></article>)}</div></section>
-   <section className="mt-9"><div className="mb-5 flex items-center justify-between"><h2 className="text-lg font-semibold">A little inspiration</h2><span className="text-xs text-muted-foreground">Not sure where to start?</span></div><div className="grid gap-x-7 sm:grid-cols-3">{[{icon:Mail,title:'Follow up, without the fuss',copy:'Draft a friendly project follow-up.',path:'/email-generator' as const},{icon:ScanText,title:'Make the complex clear',copy:'Explore remote team collaboration.',path:'/research-assistant' as const},{icon:MessageSquare,title:'Make space for deep work',copy:'Plan a more productive workday.',path:'/chatbot' as const}].map(t => <Button asChild variant="ghost" key={t.title} className="h-auto justify-start whitespace-normal border-b border-border px-0 py-4 text-left"><Link to={t.path} search={{example:true}}><t.icon className="mr-1 text-muted-foreground"/><span className="min-w-0 flex-1"><span className="block text-xs font-medium">{t.title}</span><span className="mt-1 block text-[11px] font-normal text-muted-foreground">{t.copy}</span></span><Plus className="text-muted-foreground"/></Link></Button>)}</div></section>
-   <div className="mt-8 grid gap-4 border-y border-border py-5 sm:grid-cols-[minmax(0,1fr)_auto]"><div className="flex items-start gap-3"><ShieldCheck size={19} className="mt-0.5 shrink-0 text-success"/><div><h3 className="text-xs font-medium">Built for a thoughtful workplace</h3><p className="mt-1 text-[11px] leading-5 text-muted-foreground">This is a simulated AI workspace. Always verify outputs and keep sensitive information private.</p></div></div><div className="flex items-center gap-2 text-[11px] text-muted-foreground"><Check size={14} className="text-success"/>No sign-up required</div></div>
- </WorkplaceShell>;
+  return (
+    <WorkplaceShell title="Dashboard">
+      <div className="mb-7 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+        <div className="min-w-0">
+          <div className="small-label mb-3 text-primary">A clearer day starts here</div>
+          <h1 className="text-2xl font-semibold sm:text-[30px]">
+            Welcome to your workspace<span className="text-primary">.</span>
+          </h1>
+          <p className="mt-2 text-muted-foreground">Less busywork. More room for your best work.</p>
+        </div>
+        <div className="hidden items-center gap-2 text-xs text-muted-foreground lg:flex">
+          <span className="status-dot" />
+          Ready when you are
+        </div>
+      </div>
+      <section className="workspace-banner">
+        <img
+          src={workspace}
+          alt="Glass-blue envelope and chat bubble with a silver document"
+          width={1536}
+          height={768}
+        />
+        <div className="workspace-banner-content">
+          <span className="inline-flex items-center gap-2 text-xs font-medium text-primary">
+            <Zap size={14} />A smarter way to work
+          </span>
+          <h2 className="mt-4 text-[29px] font-semibold leading-[1.25] sm:text-[34px]">
+            AI Workplace
+            <br />
+            Productivity Assistant
+          </h2>
+          <p className="mt-3 max-w-80 text-sm leading-6 text-muted-foreground">
+            Find the right words. Get to the key insights.
+            <br className="hidden sm:block" /> Move your next idea forward.
+          </p>
+          <Button asChild className="mt-5">
+            <Link to="/email-generator">
+              Let's get to work
+              <ArrowRight />
+            </Link>
+          </Button>
+        </div>
+      </section>
+      <section className="mt-9">
+        <div className="mb-5 flex items-center justify-between">
+          <h2 className="text-lg font-semibold">Your everyday toolkit</h2>
+          <span className="text-xs text-muted-foreground">Three tools. One focused workspace.</span>
+        </div>
+        <div className="grid gap-4 xl:grid-cols-3">
+          {tools.map((t) => (
+            <article className="tool-card flex flex-col" key={t.path}>
+              <div className="flex items-center justify-between">
+                <div className={`flex size-11 items-center justify-center rounded-lg ${t.color}`}>
+                  <t.icon size={22} />
+                </div>
+                <ArrowUpRight size={17} className="text-muted-foreground" />
+              </div>
+              <div className="small-label mt-6 text-[9px]">{t.tag}</div>
+              <h3 className="mt-2 text-lg font-semibold">{t.name}</h3>
+              <p className="mt-3 min-h-16 text-[13px] leading-6 text-muted-foreground">
+                {t.description}
+              </p>
+              <div className="mt-5 border-t border-border pt-4">
+                <Button
+                  asChild
+                  variant="ghost"
+                  className="h-auto w-full justify-between p-0 text-sm"
+                >
+                  <Link to={t.path}>
+                    {t.action}
+                    <ArrowRight />
+                  </Link>
+                </Button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="mt-9">
+        <div className="mb-5 flex items-center justify-between">
+          <h2 className="text-lg font-semibold">A little inspiration</h2>
+          <span className="text-xs text-muted-foreground">Not sure where to start?</span>
+        </div>
+        <div className="grid gap-x-7 sm:grid-cols-3">
+          {[
+            {
+              icon: Mail,
+              title: "Follow up, without the fuss",
+              copy: "Draft a friendly project follow-up.",
+              path: "/email-generator" as const,
+            },
+            {
+              icon: ScanText,
+              title: "Make the complex clear",
+              copy: "Explore remote team collaboration.",
+              path: "/research-assistant" as const,
+            },
+            {
+              icon: MessageSquare,
+              title: "Make space for deep work",
+              copy: "Plan a more productive workday.",
+              path: "/chatbot" as const,
+            },
+          ].map((t) => (
+            <Button
+              asChild
+              variant="ghost"
+              key={t.title}
+              className="h-auto justify-start whitespace-normal border-b border-border px-0 py-4 text-left"
+            >
+              <Link to={t.path} search={{ example: true }}>
+                <t.icon className="mr-1 text-muted-foreground" />
+                <span className="min-w-0 flex-1">
+                  <span className="block text-xs font-medium">{t.title}</span>
+                  <span className="mt-1 block text-[11px] font-normal text-muted-foreground">
+                    {t.copy}
+                  </span>
+                </span>
+                <Plus className="text-muted-foreground" />
+              </Link>
+            </Button>
+          ))}
+        </div>
+      </section>
+      <div className="mt-8 grid gap-4 border-y border-border py-5 sm:grid-cols-[minmax(0,1fr)_auto]">
+        <div className="flex items-start gap-3">
+          <ShieldCheck size={19} className="mt-0.5 shrink-0 text-success" />
+          <div>
+            <h3 className="text-xs font-medium">Built for a thoughtful workplace</h3>
+            <p className="mt-1 text-[11px] leading-5 text-muted-foreground">
+              This is a simulated AI workspace. Always verify outputs and keep sensitive information
+              private.
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+          <Check size={14} className="text-success" />
+          No sign-up required
+        </div>
+      </div>
+    </WorkplaceShell>
+  );
 }
