@@ -1,0 +1,214 @@
+import { Link, useLocation } from "@tanstack/react-router";
+import { useState, type ReactNode } from "react";
+import {
+  LayoutDashboard,
+  Mail,
+  ScanText,
+  MessageSquare,
+  ArrowUpRight,
+  ShieldCheck,
+  Menu,
+  X,
+  CircleHelp,
+  ChevronRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+
+export const tools = [
+  {
+    name: "Email Generator",
+    title: "Smart Email Generator",
+    path: "/email-generator",
+    icon: Mail,
+    color: "text-primary bg-blue-soft",
+    description: "The right words, every time. Turn your ideas into polished, professional emails.",
+    action: "Write an email",
+    tag: "COMMUNICATE BETTER",
+  },
+  {
+    name: "Research Assistant",
+    title: "AI Research Assistant",
+    path: "/research-assistant",
+    icon: ScanText,
+    color: "text-violet bg-violet-soft",
+    description:
+      "Less reading. More understanding. Bring clarity to complex topics and long documents.",
+    action: "Start researching",
+    tag: "FIND YOUR FOCUS",
+  },
+  {
+    name: "AI Chatbot",
+    title: "AI Chatbot",
+    path: "/chatbot",
+    icon: MessageSquare,
+    color: "text-success bg-green-soft",
+    description:
+      "A fresh perspective, on demand. Think through challenges with your workplace companion.",
+    action: "Start a conversation",
+    tag: "THINK IT THROUGH",
+  },
+] as const;
+
+export function BrandMark() {
+  return (
+    <svg className="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="10" className="fill-primary" />
+      <path d="M11 27V13h6v8h6v-8h6v14h-6v-3h-6v3z" className="fill-primary-foreground" />
+    </svg>
+  );
+}
+
+export function WorkplaceShell({ children, title }: { children: ReactNode; title: string }) {
+  const [open, setOpen] = useState(false);
+  const [help, setHelp] = useState(false);
+  const { pathname } = useLocation();
+  const links = [{ name: "Dashboard", path: "/", icon: LayoutDashboard }, ...tools];
+  return (
+    <div>
+      {open && (
+        <div
+          className="fixed inset-0 z-30 bg-background/80 md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+      <aside className={`sidebar ${open ? "is-open" : ""}`}>
+        <div className="flex items-center gap-3 px-6 py-7">
+          <BrandMark />
+          <div className="min-w-0">
+            <div className="text-[17px] font-bold">
+              Workplace<span className="text-primary"> AI</span>
+            </div>
+            <div className="mt-1 text-[10px] text-muted-foreground">YOUR PRODUCTIVITY PARTNER</div>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="ml-auto md:hidden"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          >
+            <X />
+          </Button>
+        </div>
+        <div className="px-5 pt-7">
+          <p className="small-label mb-4 px-3">Workspace</p>
+          <nav className="space-y-2">
+            {links.map(({ name, path, icon: Icon }) => (
+              <Link
+                key={path}
+                to={path}
+                className={`nav-link ${pathname === path ? "active" : ""}`}
+                onClick={() => setOpen(false)}
+              >
+                <Icon size={18} />
+                <span>{name}</span>
+                {pathname === path && (
+                  <span className="ml-auto h-1.5 w-1.5 rounded-full bg-primary" />
+                )}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className="mt-auto px-6 pb-6">
+          <div className="border-t border-border pt-5">
+            <div className="flex items-center gap-2 text-xs text-success">
+              <span className="status-dot" />
+              Demo workspace
+            </div>
+            <p className="mt-2 text-xs leading-5 text-muted-foreground">
+              A little less busywork.
+              <br />A little more possibility.
+            </p>
+          </div>
+          <Button
+            variant="ghost"
+            onClick={() => setHelp(true)}
+            className="mt-5 w-full justify-start px-0 text-muted-foreground"
+          >
+            <CircleHelp />
+            Help & responsible AI
+            <ArrowUpRight className="ml-auto" />
+          </Button>
+          <div className="mt-4 flex items-center gap-2 border-t border-border pt-5 text-[11px] text-muted-foreground">
+            <ShieldCheck size={14} />
+            No account. No personal data needed.
+          </div>
+        </div>
+      </aside>
+      <div className="app-main">
+        <header className="topbar">
+          <div className="flex min-w-0 items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="md:hidden"
+              aria-label="Open menu"
+              onClick={() => setOpen(true)}
+            >
+              <Menu />
+            </Button>
+            <span className="hidden text-muted-foreground sm:block">Workspace</span>
+            <ChevronRight size={14} className="hidden text-muted-foreground sm:block" />
+            <span className="truncate font-medium">{title}</span>
+          </div>
+          <span className="flex shrink-0 items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-[11px] text-muted-foreground">
+            <span className="status-dot" />
+            Demo mode
+          </span>
+        </header>
+        <main className="page-content animate-enter">
+          {children}
+          <footer className="mt-9 flex flex-col justify-between gap-3 border-t border-border pt-5 text-[11px] text-muted-foreground sm:flex-row">
+            <span>AI Workplace Productivity Assistant</span>
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={13} />
+              Simulated responses. Review before use.
+            </span>
+          </footer>
+        </main>
+      </div>
+      <Dialog open={help} onOpenChange={setHelp}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Thoughtful work. Responsible AI.</DialogTitle>
+            <DialogDescription className="pt-3 leading-7">
+              All responses in this workspace are simulated locally using templates, not a connected
+              AI service. They may be incomplete or inaccurate. Verify facts, recommendations, and
+              email details before using them. Do not enter confidential, sensitive, or personal
+              information. Your inputs are not sent to an AI service or stored; this session resets
+              when you refresh.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+export function PageHeading({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="mb-7">
+      <div className="small-label mb-3 text-primary">Your everyday advantage</div>
+      <h1 className="text-2xl font-semibold sm:text-[30px]">{title}</h1>
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
+    </div>
+  );
+}
+export function SimulationNotice() {
+  return (
+    <div className="mt-6 flex items-start gap-2 text-xs leading-5 text-muted-foreground">
+      <ShieldCheck className="mt-0.5 size-4 shrink-0" />
+      <p>
+        Simulated responses, not connected AI. Verify accuracy before use and avoid confidential or
+        personal information. Nothing is saved.
+      </p>
+    </div>
+  );
+}

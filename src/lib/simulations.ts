@@ -1,0 +1,41 @@
+export type Tone = "Formal" | "Friendly" | "Persuasive";
+export function generateEmail(recipient: string, subject: string, details: string, tone: Tone) {
+  const greeting =
+    tone === "Formal" ? `Dear ${recipient || "colleague"},` : `Hi ${recipient || "there"},`;
+  const opening =
+    tone === "Formal"
+      ? `I am writing regarding ${subject.toLowerCase()}.`
+      : tone === "Friendly"
+        ? `I hope your week is going well! I wanted to reach out about ${subject.toLowerCase()}.`
+        : `I would like to propose a way forward on ${subject.toLowerCase()}.`;
+  const closing =
+    tone === "Formal"
+      ? "Please let me know if you require any additional information. I look forward to your response.\n\nKind regards,"
+      : tone === "Friendly"
+        ? "Let me know what you think — happy to chat through the details. Thanks for your time!\n\nBest,"
+        : "Your input will help us move this forward. Could you share your thoughts and confirm the next steps?\n\nBest regards,";
+  return `Subject: ${subject}\n\n${greeting}\n\n${opening}\n\n${details.trim()}${/[.!?]$/.test(details.trim()) ? "" : "."}\n\n${closing}\n[Your name]`;
+}
+export function researchText(input: string, mode: "text" | "topic") {
+  if (mode === "topic")
+    return `## Topic overview\n${input.trim()} is the focus of this illustrative workplace research outline. No live sources have been searched, and factual claims need independent verification.\n\n## Key questions\n- How does ${input.trim()} affect your team's priorities?\n- What costs, benefits, and risks should be measured?\n- Which stakeholders and reliable sources can provide evidence?\n\n## Recommendations\n1. Define the business question and scope.\n2. Compare at least three credible, current sources.\n3. Run a small pilot with clear success metrics before scaling.\n\n*This is a simulated research framework, not a sourced report.*`;
+  const sentences = input
+    .trim()
+    .split(/(?<=[.!?])\s+|\n+/)
+    .filter(Boolean);
+  const selected = sentences.slice(0, 3);
+  return `## Summary\n${selected.join(" ")}\n\n## Key insights from your text\n${selected.map((s) => `- ${s}`).join("\n")}\n\n## Recommendations\n1. Confirm the main claims against the original document.\n2. Turn the relevant points into actions with owners and deadlines.\n3. Identify missing evidence before making decisions.\n\n*This simulated extract uses the opening sentences; it does not assess accuracy or infer findings.*`;
+}
+export function chatReply(prompt: string, previousPrompt?: string) {
+  const p = prompt.toLowerCase();
+  const context = previousPrompt
+    ? `\n\nBuilding on your earlier question about “${previousPrompt.slice(0, 90)}”, keep the same objective in mind.`
+    : "";
+  if (/priorit|productive|time|plan|overwhelm/.test(p))
+    return `Here's a practical way to plan your work:\n\n1. **Choose three priorities.** Start with tasks that have the greatest impact and closest deadlines.\n2. **Block focused time.** Reserve a distraction-free 45-minute session for your most important task.\n3. **Batch the small things.** Group email and administrative work into two short windows.\n4. **Review and adjust.** Leave space for unexpected requests and check progress at the end of the day.${context}\n\nWhat is the most important task on your list right now?`;
+  if (/meeting|agenda/.test(p))
+    return `Try this focused **30-minute meeting agenda**:\n\n- **5 minutes:** State the goal and share essential updates.\n- **15 minutes:** Discuss the two most important decisions.\n- **5 minutes:** Resolve questions and blockers.\n- **5 minutes:** Confirm actions, owners, and due dates.\n\nSend the agenda ahead of time and finish with a written recap.${context}`;
+  if (/feedback|conflict|manager|communicat/.test(p))
+    return `For a constructive workplace conversation:\n\n1. **Describe the situation** using specific, neutral observations.\n2. **Explain the impact** on the work, not on the person's character.\n3. **Ask for their perspective** and listen before responding.\n4. **Agree on one next step** and a follow-up date.\n\nYou could open with: “I'd like us to align on expectations so we can move forward together.”${context}`;
+  return `For your request — “${prompt.slice(0, 160)}” — I'd start with a clear workplace action plan:\n\n- **Define the outcome:** What would a successful result look like?\n- **Break it down:** Identify the smallest useful first step.\n- **Align with your team:** Confirm responsibilities and timelines.\n- **Check progress:** Review the result and adapt based on feedback.${context}\n\nShare the goal or constraints you'd like to focus on.\n\n*This is a simulated template, not an AI-generated assessment.*`;
+}
