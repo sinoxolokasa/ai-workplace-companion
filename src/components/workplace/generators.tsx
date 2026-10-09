@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MessageResponse } from "@/components/ai-elements/message";
-import { WorkplaceShell, PageHeading, SimulationNotice } from "./shell";
+import { WorkplaceShell, PageHeading, SimulationNotice, AiGeneratedBadge } from "./shell";
 import { generateEmail, researchText, type Tone } from "@/lib/simulations";
 
 function OutputActions({ output }: { output: string }) {
@@ -69,9 +69,10 @@ function OutputPanel({
   return (
     <section className="panel flex min-h-[460px] flex-col">
       <div className="panel-title justify-between">
-        <span className="flex items-center gap-2">
-          <FileText size={17} className="text-muted-foreground" />
-          {email ? "Generated email" : "Research output"}
+        <span className="flex min-w-0 items-center gap-2">
+          <FileText size={17} className="text-muted-foreground shrink-0" />
+          <span className="truncate">{email ? "Generated email" : "Research output"}</span>
+          {output && !busy && <AiGeneratedBadge className="ml-1" />}
         </span>
         <OutputActions output={output} />
       </div>
@@ -102,8 +103,9 @@ function OutputPanel({
             </p>
           </div>
         )}
-        <div className="mt-auto pt-6 text-[10px] text-muted-foreground">
-          SIMULATED OUTPUT · REVIEW BEFORE USE
+        <div className="mt-auto flex flex-wrap items-center gap-2 pt-6 text-[10px] text-muted-foreground">
+          {output && !busy && <AiGeneratedBadge />}
+          <span>SIMULATED OUTPUT · REVIEW BEFORE USE</span>
         </div>
       </div>
     </section>

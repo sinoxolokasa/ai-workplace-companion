@@ -199,6 +199,22 @@
   border-radius: 8px;
   overflow: hidden;
 }
+.ai-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--primary) 28%, transparent);
+  background: var(--blue-soft);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .panel-title {
   padding: 20px 24px;
   border-bottom: 1px solid var(--border);

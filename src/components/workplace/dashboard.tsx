@@ -11,7 +11,7 @@ import {
   Plus,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { WorkplaceShell, tools } from "./shell";
+import { WorkplaceShell, tools, AiGeneratedBadge } from "./shell";
 import workspace from "@/assets/workspace.jpg";
 
 export function Dashboard() {
@@ -143,10 +143,13 @@ export function Dashboard() {
         <div className="flex items-start gap-3">
           <ShieldCheck size={19} className="mt-0.5 shrink-0 text-success" />
           <div>
-            <h3 className="text-xs font-medium">Built for a thoughtful workplace</h3>
+            <div className="flex flex-wrap items-center gap-2">
+              <h3 className="text-xs font-medium">Built for a thoughtful workplace</h3>
+              <AiGeneratedBadge />
+            </div>
             <p className="mt-1 text-[11px] leading-5 text-muted-foreground">
-              This is a simulated AI workspace. Always verify outputs and keep sensitive information
-              private.
+              Every response here is AI-generated and simulated. Always verify outputs and keep
+              sensitive information private.
             </p>
           </div>
         </div>
