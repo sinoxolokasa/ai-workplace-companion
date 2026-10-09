@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import type { UIMessage } from "ai";
-import { ArrowUp, RotateCcw } from "lucide-react";
+import { ArrowUp, RotateCcw, Sparkles } from "lucide-react";
 import {
   Conversation,
   ConversationContent,
@@ -15,7 +15,7 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Button } from "@/components/ui/button";
-import { WorkplaceShell, PageHeading, SimulationNotice, BrandMark } from "./shell";
+import { WorkplaceShell, PageHeading, SimulationNotice, BrandMark, AiGeneratedBadge } from "./shell";
 import { chatReply } from "@/lib/simulations";
 export function WorkplaceChat({ example = false }: { example?: boolean }) {
   const [messages, setMessages] = useState<UIMessage[]>([]);
@@ -76,19 +76,22 @@ export function WorkplaceChat({ example = false }: { example?: boolean }) {
               </div>
             </div>
           </div>
-          <Button
-            size="icon"
-            variant="ghost"
-            title="Clear conversation"
-            aria-label="Clear conversation"
-            disabled={busy || messages.length === 0}
-            onClick={() => {
-              setMessages([]);
-              textarea.current?.focus();
-            }}
-          >
-            <RotateCcw />
-          </Button>
+          <div className="flex items-center gap-3">
+            <AiGeneratedBadge className="hidden sm:inline-flex" />
+            <Button
+              size="icon"
+              variant="ghost"
+              title="Clear conversation"
+              aria-label="Clear conversation"
+              disabled={busy || messages.length === 0}
+              onClick={() => {
+                setMessages([]);
+                textarea.current?.focus();
+              }}
+            >
+              <RotateCcw />
+            </Button>
+          </div>
         </div>
         <Conversation>
           <ConversationContent className="p-6">
@@ -122,6 +125,12 @@ export function WorkplaceChat({ example = false }: { example?: boolean }) {
                         </MessageResponse>
                       ) : null,
                     )}
+                    {m.role === "assistant" && (
+                      <span className="mt-2 flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                        <Sparkles size={10} aria-hidden="true" />
+                        AI-generated · review before use
+                      </span>
+                    )}
                   </MessageContent>
                 </Message>
               ))
@@ -141,7 +150,10 @@ export function WorkplaceChat({ example = false }: { example?: boolean }) {
               maxLength={3000}
             />
             <PromptInputFooter className="justify-between">
-              <span className="text-[10px] text-muted-foreground">Simulated assistant</span>
+              <span className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                <AiGeneratedBadge />
+                This session only
+              </span>
               <PromptInputSubmit
                 status={busy ? "submitted" : "ready"}
                 disabled={busy || !input.trim()}
