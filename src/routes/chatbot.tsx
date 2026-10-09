@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { WorkplaceChat } from "@/components/workplace/chat";
 export const Route = createFileRoute("/chatbot")({
   validateSearch: (search: Record<string, unknown>): { example?: boolean } => ({
-    example: search['example'] === true || search['example'] === "true",
+    example: search["example"] === true || search["example"] === "true",
   }),
   head: () => ({
     meta: [
