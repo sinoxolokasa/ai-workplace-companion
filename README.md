@@ -1,50 +1,109 @@
-# AI Workplace Companion
+# AI Workplace Productivity Assistant
 
-Build a modern, responsive SaaS web app called AI Workplace Productivity Assistant with a clean dark theme using charcoal grey, black, and subtle blue accents.
+## Project Overview
 
-Features:
+The **AI Workplace Productivity Assistant** is a modern, responsive web application designed to help professionals simplify everyday workplace tasks using AI-inspired tools. It provides a central dashboard for generating professional emails, summarising research, and interacting with a workplace chatbot.
 
-Dashboard: Sidebar navigation with Email Generator, Research Assistant, and AI Chatbot.
+The application features a clean, dark-themed interface with charcoal grey, black, and subtle blue accents. It is designed for easy access without requiring users to register, sign in, or provide personal information.
 
-Smart Email Generator: Generate professional emails with Formal, Friendly, and Persuasive tones. Include input fields and a generated email output.
+## Features Implemented
 
-AI Research Assistant: Summarise user-provided text or topics and provide key insights and recommendations.
+- **Dashboard:** Central workspace with sidebar navigation and access to all tools.
+- **Smart Email Generator:** Helps users draft professional emails using Formal, Friendly, and Persuasive tones.
+- **AI Research Assistant:** Summarises topics or user-provided text and presents key insights and recommendations.
+- **AI Chatbot:** Provides an interactive interface for workplace-related questions and prompts.
+- **Responsive Design:** Supports desktop and mobile devices.
+- **Input and Output Sections:** Allows users to enter prompts and view generated results.
+- **Responsible AI Disclaimer:** Reminds users to verify AI-generated content and avoid sharing sensitive information.
+- **No Authentication Required:** Users can access the application directly without registration or sign-in.
+- **Frontend-Only Implementation:** No backend or database is required. Responses may be simulated if no AI API is connected.
 
-AI Chatbot: Interactive chat interface that responds to workplace-related prompts.
+## Technologies and Tools Used
 
-Requirements:
+The following technologies may be used, depending on the final implementation:
 
-Responsive desktop and mobile layouts.
+- **Lovable:** AI-powered application development and UI generation.
+- **React:** Building reusable user interface components.
+- **TypeScript:** Adding type safety to application code.
+- **Tailwind CSS:** Styling and responsive layouts.
+- **Lucide Icons:** Providing modern interface icons.
+- **Git and GitHub:** Version control and project hosting.
+- **Vite:** Development server and frontend build tool, if included in the generated project.
 
-Modern UI with clear input/output sections, cards, and intuitive navigation.
+## Setup Instructions
 
-No backend, database, authentication, registration, or sign-in.
+### Prerequisites
 
-Allow immediate access without providing personal information.
+Install the following tools:
 
-Use realistic demo responses or client-side simulated AI responses; clearly indicate that responses are simulated if no AI API is connected.
+- [Node.js](https://nodejs.org/) (use a version compatible with the project dependencies).
+- npm, which is included with Node.js.
+- [Git](https://git-scm.com/), if cloning the repository.
 
-Include a responsible AI disclaimer about accuracy, privacy, and verifying outputs.
+### 1. Clone the Repository
 
-Build a polished, functional frontend with working navigation and interactions. Keep the implementation simple and lightweight.
+Replace `YOUR-USERNAME` with your GitHub username and `YOUR-REPOSITORY` with your repository name.
 
-This project was built with [Lovable](https://lovable.dev).
+```bash
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+```
 
-## Build with Lovable
+### 2. Navigate to the Project Folder
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/8e573c52-ea63-434d-980e-6a6525bf71ea).
+```bash
+cd YOUR-REPOSITORY
+```
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+### 3. Install Dependencies
 
-## Development
+```bash
+npm install
+```
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+### 4. Run the Application
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
 npm run dev
 ```
+
+Open the local URL displayed in your terminal, commonly `http://localhost:5173`, to access the application.
+
+### 5. Build for Production
+
+To create a production build, run:
+
+```bash
+npm run build
+```
+
+To preview the production build locally, run:
+
+```bash
+npm run preview
+```
+
+*Note: These commands assume the generated project uses Vite and npm. Check the project's `package.json` for the actual available scripts.*
+
+## Responsible AI and Limitations
+
+This application is designed to support workplace productivity, not replace professional judgement. Users should review generated emails, research summaries, recommendations, and chatbot responses for accuracy before relying on them.
+
+Unless a real AI service is connected, generated responses are simulated and should not be presented as outputs from a live AI model. Avoid entering confidential, personal, or sensitive workplace information.
+
+## Future Improvements
+
+- Integrate a real AI API for live email generation, research summaries, and chatbot responses.
+- Add export and copy-to-clipboard functionality.
+- Improve response customisation and formatting.
+- Introduce optional conversation history using privacy-conscious storage.
+- Deploy the application for public access.
+
+## Project Status
+
+**Status:** Frontend prototype
+
+The project focuses on delivering a responsive, user-friendly interface for common workplace productivity tasks without requiring a backend or user authentication.
+
+## License
+
+This project is available for educational and portfolio purposes. Add a specific open-source licence, such as the MIT License, if you intend to permit reuse and redistribution under its terms.
