@@ -193,11 +193,11 @@ export function WorkplaceShell({ children, title }: { children: ReactNode; title
           <DialogHeader>
             <DialogTitle>Thoughtful work. Responsible AI.</DialogTitle>
             <DialogDescription className="pt-3 leading-7">
-              All responses in this workspace are simulated locally using templates, not a connected
-              AI service. They may be incomplete or inaccurate. Verify facts, recommendations, and
-              email details before using them. Do not enter confidential, sensitive, or personal
-              information. Your inputs are not sent to an AI service or stored; this session resets
-              when you refresh.
+              Everything you see in this workspace is AI-generated. The responses are simulated
+              locally using templates, not a connected AI service, so they may be incomplete or
+              inaccurate. Verify facts, recommendations, and email details before using them. Do not
+              enter confidential, sensitive, or personal information. Your inputs are not sent to an
+              AI service or stored; this session resets when you refresh.
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -217,11 +217,12 @@ export function PageHeading({ title, description }: { title: string; description
 }
 export function SimulationNotice() {
   return (
-    <div className="mt-6 flex items-start gap-2 text-xs leading-5 text-muted-foreground">
+    <div className="mt-6 flex items-start gap-3 text-xs leading-5 text-muted-foreground">
       <ShieldCheck className="mt-0.5 size-4 shrink-0" />
       <p>
-        Simulated responses, not connected AI. Verify accuracy before use and avoid confidential or
-        personal information. Nothing is saved.
+        <span className="font-medium text-foreground">AI-generated content.</span> These responses
+        are simulated locally, not connected AI. Verify accuracy before use and avoid confidential
+        or personal information. Nothing is saved.
       </p>
     </div>
   );
