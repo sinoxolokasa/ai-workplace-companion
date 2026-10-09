@@ -24,5 +24,5 @@ export const Route = createFileRoute("/chatbot")({
 });
 function Page() {
   const { example } = Route.useSearch();
-  return <WorkplaceChat example={example} />;
+  return <WorkplaceChat example={example ?? false} />;
 }

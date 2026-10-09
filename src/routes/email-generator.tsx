@@ -26,5 +26,5 @@ export const Route = createFileRoute("/email-generator")({
 });
 function Page() {
   const { example } = Route.useSearch();
-  return <EmailGenerator example={example} />;
+  return <EmailGenerator example={example ?? false} />;
 }

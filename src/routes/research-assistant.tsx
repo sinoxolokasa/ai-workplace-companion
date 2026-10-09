@@ -26,5 +26,5 @@ export const Route = createFileRoute("/research-assistant")({
 });
 function Page() {
   const { example } = Route.useSearch();
-  return <ResearchAssistant example={example} />;
+  return <ResearchAssistant example={example ?? false} />;
 }
